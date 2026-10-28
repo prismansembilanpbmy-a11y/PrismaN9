@@ -1,0 +1,61 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #root .shot {
+      position: absolute;
+      inset: 0;
+      background: #4a0710;
+    }
+    #root .label {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 230px;
+      text-align: center;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 96px;
+      color: #f5c22e;
+    }
+    /* Landscape meeting photos kept whole, as a framed print */
+    #root .frame {
+      position: absolute;
+      left: 50px;
+      top: 420px;
+      width: 980px;
+      height: 735px;
+      background: #ffffff;
+      padding: 12px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    }
+    #root .frame img {
+      width: 956px;
+      height: 711px;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+  <div id="root" data-composition-id="broll" data-width="1080" data-height="1920">
+    <div id="b-1" class="shot clip" data-start="5.7" data-duration="5.15" data-track-index="0">
+      <div class="label">Baru-baru ini…</div>
+      <div id="b-1-f" class="frame"><img src="assets/jumpa1.jpg" alt="Pertemuan YB dengan belia PRISMA" /></div>
+    </div>
+    <div id="b-2" class="shot clip" data-start="10.85" data-duration="5.0" data-track-index="0">
+      <div class="label">Belia PRISMA</div>
+      <div id="b-2-f" class="frame"><img src="assets/jumpa2.jpg" alt="YB bersama belia PRISMA" /></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Each print settles at a slight tilt and keeps a slow push while it is read.
+    tl.fromTo("#b-1-f", { rotation: -4, scale: 1.0 }, { rotation: -2, scale: 1.05, duration: 5.15, ease: "none" }, 5.7);
+    tl.fromTo("#b-2-f", { rotation: 4, scale: 1.0 }, { rotation: 2, scale: 1.05, duration: 5.0, ease: "none" }, 10.85);
+    tl.set({}, {}, 15.85);
+    window.__timelines["broll"] = tl;
+  </script>
+</template>
