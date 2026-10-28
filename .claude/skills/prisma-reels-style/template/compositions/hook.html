@@ -1,0 +1,90 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    /* Proof wall: her real photos as tilted prints around the talking head */
+    #root .print {
+      position: absolute;
+      width: 250px;
+      height: 330px;
+      background: #ffffff;
+      padding: 8px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+    }
+    #root .print img {
+      width: 234px;
+      height: 314px;
+      object-fit: cover;
+      display: block;
+    }
+    #hook-title {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 180px;
+      text-align: center;
+      color: #ffffff;
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.7);
+    }
+    #hook-kicker {
+      display: inline-block;
+      background: #16236e;
+      padding: 8px 18px 6px 26px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      font-size: 34px;
+      letter-spacing: 0.3em;
+    }
+    #hook-big {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 150px;
+      line-height: 1.05;
+      color: #f7c600;
+    }
+    #hook-plate {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1190px;
+      text-align: center;
+    }
+    #hook-plate span {
+      display: inline-block;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: 54px;
+      color: #16236e;
+      background: #f7c600;
+      padding: 12px 28px 10px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hook-p1" class="print" style="left: 36px; top: 470px"><img src="assets/pingat.jpg" style="object-position: 50% 20%" alt="" /></div>
+    <div id="hook-p2" class="print" style="left: 794px; top: 430px"><img src="assets/catur.jpg" style="object-position: 60% 60%" alt="" /></div>
+    <div id="hook-p3" class="print" style="left: 28px; top: 850px"><img src="assets/rtm.jpg" style="object-position: 40% 30%" alt="" /></div>
+    <div id="hook-p4" class="print" style="left: 802px; top: 870px"><img src="assets/waghih.jpg" style="object-position: 50% 30%" alt="" /></div>
+    <div id="hook-title" data-layout-allow-overlap>
+      <div id="hook-kicker">CALON 08 · PRISMA</div>
+      <div id="hook-big">Kenal dia?</div>
+    </div>
+    <div id="hook-plate"><span id="hook-plate-t">Atlet → Graduan → Pemimpin</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Frame 0 already reads as a poster: title + two prints. The other prints and the plate pop in.
+    tl.set("#hook-p1", { rotation: -8 }, 0);
+    tl.set("#hook-p2", { rotation: 7 }, 0);
+    tl.fromTo("#hook-p3", { scale: 0.5, rotation: -10, opacity: 0 }, { scale: 1, rotation: 6, opacity: 1, duration: 0.3, ease: "back.out(2)" }, 0.35);
+    tl.fromTo("#hook-p4", { scale: 0.5, rotation: 8, opacity: 0 }, { scale: 1, rotation: -6, opacity: 1, duration: 0.3, ease: "back.out(2)" }, 0.6);
+    tl.fromTo("#hook-plate-t", { scale: 0.6, rotation: 0, opacity: 0 }, { scale: 1, rotation: -3, opacity: 1, duration: 0.3, ease: "back.out(2.2)" }, 0.9);
+    tl.set({}, {}, 3.1);
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

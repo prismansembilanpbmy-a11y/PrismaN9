@@ -1,0 +1,49 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    #root .iris {
+      position: absolute;
+      inset: 0;
+    }
+    /* A yellow disc grows to fill the frame, then opens as a hole onto the next chapter */
+    #root .disc {
+      position: absolute;
+      inset: 0;
+      background: #f7c600;
+      --r: 0px;
+      clip-path: circle(0% at 50% 42%);
+    }
+  </style>
+  <div id="root" data-composition-id="iris" data-width="1080" data-height="1920">
+    <div id="iris-1" class="iris clip" data-start="2.85" data-duration="0.6" data-track-index="0"><div id="iris-1-d" class="disc"></div></div>
+    <div id="iris-2" class="iris clip" data-start="22.75" data-duration="0.6" data-track-index="0"><div id="iris-2-d" class="disc"></div></div>
+    <div id="iris-3" class="iris clip" data-start="54.77" data-duration="0.6" data-track-index="0"><div id="iris-3-d" class="disc"></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const hole = (r) =>
+      `radial-gradient(circle at 50% 42%, transparent ${r}px, #000 ${r + 2}px)`;
+    // cut = the moment the frame is fully yellow and the next shot is underneath
+    [["#iris-1-d", 3.1], ["#iris-2-d", 23.0], ["#iris-3-d", 55.02]].forEach(([el, cut]) => {
+      tl.fromTo(el, { clipPath: "circle(0% at 50% 42%)" },
+        { clipPath: "circle(80% at 50% 42%)", duration: 0.25, ease: "power2.in" }, cut - 0.25);
+      tl.set(el, { clipPath: "none", maskImage: hole(0), webkitMaskImage: hole(0) }, cut);
+      const node = document.querySelector(el);
+      const state = { r: 0 };
+      tl.fromTo(state, { r: 0 }, {
+        r: 1300, duration: 0.33, ease: "power2.out",
+        onUpdate() {
+          node.style.maskImage = hole(state.r);
+          node.style.webkitMaskImage = hole(state.r);
+        },
+      }, cut + 0.02);
+    });
+    tl.set({}, {}, 64.8);
+    window.__timelines["iris"] = tl;
+  </script>
+</template>

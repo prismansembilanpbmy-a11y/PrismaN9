@@ -1,0 +1,162 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #root .card {
+      position: absolute;
+      left: 72px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    #root .row {
+      display: flex;
+      gap: 12px;
+      align-items: stretch;
+    }
+    #root .plate {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      padding: 14px 28px 10px;
+      white-space: nowrap;
+    }
+    #root .navy { background: #16236e; color: #ffffff; }
+    #root .navy-y { background: #16236e; color: #f7c600; }
+    #root .white { background: #ffffff; color: #16236e; }
+    #root .yellow { background: #f7c600; color: #16236e; }
+    #root .red { background: #d21f26; color: #ffffff; }
+    #root .sub { font-family: "Poppins", sans-serif; font-weight: 700; letter-spacing: 0; }
+    /* Negeri Sembilan flag: yellow field, canton split red over black */
+    #root .flag {
+      width: 210px;
+      height: 105px;
+      background: #f7c600;
+      position: relative;
+      overflow: hidden;
+      border: 4px solid #ffffff;
+    }
+    #root .flag::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 84px;
+      height: 49px;
+      background: linear-gradient(to top right, #111 50%, #d21f26 50%);
+    }
+    #root .bigword {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 790px;
+      text-align: center;
+    }
+    #root .bigword span {
+      display: inline-block;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 170px;
+      line-height: 1;
+      color: #f7c600;
+      text-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+    }
+  </style>
+  <div id="root" data-composition-id="cards" data-width="1080" data-height="1920">
+    <div id="c-name" class="card clip" data-start="3.45" data-duration="2.55" data-track-index="0" style="bottom: 790px">
+      <div class="plate white" style="font-size: 96px" data-var-text="nama">NUR FATIHAH</div>
+      <div class="plate navy sub" style="font-size: 46px">binti Jasmi</div>
+    </div>
+
+    <div id="c-calon" class="card clip" data-start="6.05" data-duration="2.45" data-track-index="0" style="bottom: 790px">
+      <div class="row">
+        <div class="plate navy-y" style="font-size: 60px">CALON</div>
+        <div class="plate red" style="font-size: 60px">NEGERI SEMBILAN</div>
+      </div>
+      <div class="row">
+        <div class="plate flag" style="width: 150px; height: 76px"></div>
+        <div class="plate white" style="font-size: 52px">PRISMA</div>
+      </div>
+    </div>
+
+    <div id="c-age" class="card clip" data-start="9.25" data-duration="1.4" data-track-index="0" style="bottom: 790px">
+      <div class="row" style="align-items: flex-end">
+        <div id="c-age-n" class="plate navy-y" style="font-size: 230px">24</div>
+        <div class="plate white" style="font-size: 76px">TAHUN</div>
+      </div>
+    </div>
+
+    <div id="c-asal" class="card clip" data-start="11.9" data-duration="3.3" data-track-index="0" style="bottom: 790px">
+      <div class="row" style="align-items: center">
+        <div class="plate navy sub" style="font-size: 40px">Asal</div>
+        <div class="plate white" style="font-size: 68px">KUALA LUMPUR</div>
+      </div>
+      <div class="row" style="align-items: center">
+        <div class="plate navy sub" style="font-size: 40px">Menetap</div>
+        <div class="plate white" style="font-size: 68px">SELANGOR</div>
+      </div>
+    </div>
+
+    <div id="c-kampung" class="card clip" data-start="18.8" data-duration="3.15" data-track-index="0" style="bottom: 790px">
+      <div class="plate navy sub" style="font-size: 44px">Kampung di</div>
+      <div class="plate yellow" style="font-size: 96px">KUALA PILAH</div>
+    </div>
+
+    <div id="c-oku" class="card clip" data-start="26.4" data-duration="3.2" data-track-index="0" style="bottom: 790px">
+      <div class="plate yellow" style="font-size: 160px">OKU</div>
+      <div class="plate navy sub" style="font-size: 48px">kategori fizikal</div>
+    </div>
+
+    <div id="c-grad" class="card clip" data-start="31.8" data-duration="5.1" data-track-index="0" style="bottom: 790px">
+      <div class="row">
+        <div class="plate navy-y" style="font-size: 52px">GRADUAN</div>
+        <div class="plate navy" style="font-size: 52px">UMCCed</div>
+      </div>
+      <div class="plate white" style="font-size: 58px">DIPLOMA PENGURUSAN</div>
+    </div>
+
+    <div id="c-pimpin" class="card clip" data-start="38.7" data-duration="2.6" data-track-index="0" style="bottom: 790px">
+      <div class="plate navy sub" style="font-size: 44px">Aktif dalam</div>
+      <div class="plate white" style="font-size: 64px">KEPIMPINAN BELIA</div>
+    </div>
+
+    <div id="c-atlet" class="card clip" data-start="42.2" data-duration="2.7" data-track-index="0" style="top: 230px">
+      <div class="plate yellow" style="font-size: 64px">ATLET PARA CATUR</div>
+      <div class="plate red" style="font-size: 52px">NEGERI SEMBILAN</div>
+    </div>
+
+    <!-- One big serif word on the two beats of her belief line -->
+    <div id="c-big1" class="bigword clip" data-start="49.57" data-duration="2.1" data-track-index="1"><span id="c-big1-t">berhak</span></div>
+    <div id="c-big2" class="bigword clip" data-start="54.08" data-duration="0.7" data-track-index="1"><span id="c-big2-t">berjaya.</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Plates are printed on: each wipes in from the left, staggered, then wipes off to the right.
+    const cards = [
+      ["#c-name", 3.45, 2.55], ["#c-calon", 6.05, 2.45], ["#c-age", 9.25, 1.4], ["#c-asal", 11.9, 3.3],
+      ["#c-kampung", 18.8, 3.15], ["#c-oku", 26.4, 3.2], ["#c-grad", 31.8, 5.1], ["#c-pimpin", 38.7, 2.6],
+      ["#c-atlet", 42.2, 2.7],
+    ];
+    cards.forEach(([id, t, d]) => {
+      const plates = document.querySelectorAll(id + " .plate");
+      tl.fromTo(plates, { clipPath: "inset(0% 100% 0% 0%)" },
+        { clipPath: "inset(0% 0% 0% 0%)", duration: 0.27, ease: "expo.out", stagger: 0.1 }, t);
+      tl.to(plates, { clipPath: "inset(0% 0% 0% 100%)", duration: 0.2, ease: "power2.in", stagger: 0.04 },
+        t + d - 0.2 - 0.04 * (plates.length - 1) - 0.02);
+    });
+    // The age lands with weight.
+    tl.fromTo("#c-age-n", { scale: 1.35, transformOrigin: "50% 100%" },
+      { scale: 1, duration: 0.3, ease: "back.out(2)" }, 9.25);
+    // Big words pop, hold still, and leave with their clip.
+    [["#c-big1-t", 49.57], ["#c-big2-t", 54.08]].forEach(([el, t]) =>
+      tl.fromTo(el, { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.25, ease: "back.out(2)" }, t));
+    tl.set({}, {}, 55.02);
+    window.__timelines["cards"] = tl;
+  </script>
+</template>

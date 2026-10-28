@@ -1,0 +1,63 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #slg-bg {
+      position: absolute;
+      inset: 0;
+      background: #16236e;
+      opacity: 0.9;
+    }
+    #slg-lines {
+      position: absolute;
+      left: 72px;
+      top: 520px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 26px;
+    }
+    #root .ln {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 96px;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+      white-space: nowrap;
+      opacity: 0;
+    }
+    #slg-l2 { color: #f7c600; }
+    #slg-bar {
+      width: 420px;
+      height: 18px;
+      background: #d21f26;
+      transform-origin: 0 50%;
+    }
+  </style>
+  <div id="root" data-composition-id="slogan" data-width="1080" data-height="1920">
+    <div id="slg-bg"></div>
+    <div id="slg-lines">
+      <div id="slg-l1" class="ln" data-var-text="slogan1">SUARA OKU,</div>
+      <div id="slg-l2" class="ln" data-var-text="slogan2">HAK SAKSAMA,</div>
+      <div id="slg-l3" class="ln" data-var-text="slogan3">MASA DEPAN</div>
+      <div id="slg-l4" class="ln" data-var-text="slogan4">BERSAMA.</div>
+      <div id="slg-bar"></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#slg-bg", { opacity: 0 }, { opacity: 0.9, duration: 0.15, ease: "power2.out" }, 0);
+    // Each line snaps in on the word she says it.
+    [["#slg-l1", 0.05], ["#slg-l2", 0.51], ["#slg-l3", 1.71], ["#slg-l4", 2.79]].forEach(([el, t]) => {
+      tl.set(el, { opacity: 1 }, t);
+      tl.fromTo(el, { scale: 1.14, transformOrigin: "0% 50%" }, { scale: 1, duration: 0.28, ease: "expo.out" }, t);
+    });
+    tl.fromTo("#slg-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "expo.out" }, 2.95);
+    tl.set({}, {}, 4.78);
+    window.__timelines["slogan"] = tl;
+  </script>
+</template>

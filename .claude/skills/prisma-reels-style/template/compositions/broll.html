@@ -1,0 +1,43 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #root .shot {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #16236e;
+    }
+    #root .shot img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+      object-fit: cover;
+    }
+  </style>
+  <div id="root" data-composition-id="broll" data-width="1080" data-height="1920">
+    <div id="broll-rtm" class="shot clip" data-start="23" data-duration="6.65" data-track-index="0">
+      <img id="broll-rtm-img" src="assets/rtm.jpg" style="object-position: 36% 50%" alt="" />
+    </div>
+    <div id="broll-waghih" class="shot clip" data-start="38.6" data-duration="2.75" data-track-index="0">
+      <img id="broll-waghih-img" src="assets/waghih.jpg" style="object-position: 54% 50%" alt="" />
+    </div>
+    <div id="broll-catur" class="shot clip" data-start="41.35" data-duration="3.6" data-track-index="0">
+      <img id="broll-catur-img" src="assets/catur.jpg" style="object-position: 65% 50%" alt="" />
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Hard cut in, then a slow push for the length of the shot.
+    [["#broll-rtm-img", 23, 6.65], ["#broll-waghih-img", 38.6, 2.75], ["#broll-catur-img", 41.35, 3.6]].forEach(([el, t, d]) =>
+      tl.fromTo(el, { scale: 1.0 }, { scale: 1.08, duration: d, ease: "none" }, t),
+    );
+    tl.set({}, {}, 55.02);
+    window.__timelines["broll"] = tl;
+  </script>
+</template>
