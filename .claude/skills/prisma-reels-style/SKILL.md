@@ -1,6 +1,6 @@
 ---
 name: prisma-reels-style
-description: House style for PRISMA (Parti Belia Sejahtera Malaysia) candidate introduction videos for Instagram/Facebook Reels, built with HyperFrames. Use whenever the user asks for another candidate intro / "video pengenalan calon", a PRISMA reel, or "guna style yang sama" - it holds the v3 look (proof-wall hook, yellow iris transitions, serif-italic keyword captions, comment-box CTA), the structure, sound and the ready template from the Calon 08 Nur Fatihah video.
+description: House style for PRISMA (Parti Belia Sejahtera Malaysia) Instagram/Facebook Reels built with HyperFrames - candidate introductions AND leader speech / campaign calls (e.g. Jom Daftar ePBMY). Use whenever the user asks for another candidate intro / "video pengenalan calon", a speech or seruan video, a PRISMA reel, or "guna style yang sama" - it holds the v3 look (proof-wall hook, yellow iris transitions, serif-italic keyword captions, comment-box CTA), the structure, sound and the ready template from the Calon 08 Nur Fatihah video.
 ---
 
 # PRISMA candidate Reels style (v3)
@@ -40,6 +40,26 @@ Transitions: `compositions/iris.html`, yellow #F7C600 disc grows (0.25 s power2.
 - `tools/captions_v3.py`: edit FIX (index -> spelling), HOT, END (stop before a big word that repeats), no-break words.
 - SFX (bundled library, start = picture time - file peak + 1 frame): whoosh on iris cuts/B-roll, pop on hook plate/name/age/award cards, impact-bass-1 on the slogan, typing on the CTA. Volume 0.3-0.5.
 - Music: AI music (user's choice). `tools/musicgen.py <out.wav> <seconds>` in a venv with CPU torch + transformers + soundfile (`facebook/musicgen-small`, ~2-3 min on CPU). Volume lane: 0.14 under voice, 0.55 after the last word, fade to 0. No credit needed.
+
+## Variant: speech / campaign call (template-ucapan/)
+Proven on "Pesanan YB ADUN Ampangan - Jom Daftar ePBMY" (76 s from a 104 s speech in 2 parts). Use it for a leader's speech, a seruan or a registration push.
+- Palette follows the campaign poster the user gives (this one: maroon #7A0F1E, deep #4A0710, gold #F5C22E, urgent red #D21F26). Logos are cropped from the poster's logo band (`convert poster.jpg -crop WxH+X+Y -resize 200% logos.png`).
+- Speaker on a plain wall: cards and big serif words go on the empty wall ABOVE the head (top 220, bottom <= 570); captions sit on the shirt at top 1190 in a dark pill (`rgba(40,4,10,.62)`, Poppins 700 56 px, gold Playfair italic keywords).
+- Hook (0 to end of salam): logo strip + "Gen Z," Playfair italic 150 px + one red plate with the urgent line, 2 meeting photos as tilted prints at the edges, name + title plates in the caption band.
+- Meeting photos (landscape): keep them whole as a framed print (980x735) on the dark ground with a serif label, never cover-cropped to 9:16.
+- Spelled words (e.g. "E, P, B, MY"): one plate per letter popping on each spoken letter, caption merged into one word.
+- Iris (gold) at: end of salam, the date/registration chapter, the end card.
+- End card: logo strip, "JOM DAFTAR!", serif subline, the guide poster + the IG profile screenshot as tilted prints, gold pill "Panduan ... → @handle", red "TUTUP HARI INI!" stamp when it is the last day, comment box typing the hashtag.
+- `tools/cut2.py`: joins several clips, keeps chosen ranges (drop off-message parts such as lists of other parties: ask first, default drop), trims pauses >= 0.6 s, remaps each word to the segment it overlaps most. Words Whisper puts inside a trimmed pause are re-added by hand in `tools/captions_yb.py` (ADD).
+- Speech recorded quietly: normalise the speech file before building (`ffmpeg -i talk.mp4 -c:v copy -af loudnorm=I=-16:TP=-1.5:LRA=11 ...`); measure the render with ebur128.
+- Never guess facts the speech garbles (a year, party names): ask, and in the post caption leave the uncertain part out.
+- Also write the post caption (full + short version) and save it to `videos/CAPTIONS.md`.
+
+## Practical notes
+- iPhone photos come as HEIC: ImageMagick here cannot read them; use pillow-heif in the MusicGen venv (`~/.mgvenv/bin/pip install pillow pillow-heif`, then `ImageOps.exif_transpose(...)`).
+- `whisper-cli crashed (SIGILL)` after the session moves to another machine: move `~/.cache/hyperframes/whisper/whisper.cpp/build` aside and transcribe again (it rebuilds).
+- `transcribe` writes `transcript.json` next to the input file, not in the cwd; rename it per part.
+- Store finished MP4s in `videos/` of this repo (GitHub max 100 MB per file); suggest Google Drive once the repo grows.
 
 ## Work loop the user expects
 1. Confirm spellings, then copy `template/` into a new project and swap assets, text and times.

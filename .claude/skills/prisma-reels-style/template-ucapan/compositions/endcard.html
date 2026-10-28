@@ -1,0 +1,155 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #4a0710;
+    }
+    #end-logos {
+      position: absolute;
+      left: 240px;
+      top: 180px;
+      width: 600px;
+      height: 112px;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    #end-logos img {
+      width: 600px;
+      height: 112px;
+      display: block;
+    }
+    #end-title {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 310px;
+      text-align: center;
+      font-family: "Poppins", sans-serif;
+      font-weight: 800;
+      font-size: 130px;
+      line-height: 1;
+      color: #ffffff;
+    }
+    #end-sub {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 450px;
+      text-align: center;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 60px;
+      color: #f5c22e;
+    }
+    #root .print {
+      position: absolute;
+      background: #ffffff;
+      padding: 8px;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+    }
+    #root .print img {
+      display: block;
+      object-fit: cover;
+    }
+    #end-poster { left: 70px; top: 590px; width: 436px; height: 541px; }
+    #end-poster img { width: 420px; height: 525px; }
+    #end-ig { left: 620px; top: 570px; width: 336px; height: 600px; border-radius: 24px; }
+    #end-ig img { width: 320px; height: 584px; border-radius: 18px; object-position: 50% 0%; }
+    #end-guide {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1182px;
+      text-align: center;
+    }
+    #end-guide span {
+      display: inline-block;
+      font-family: "Poppins", sans-serif;
+      font-weight: 800;
+      font-size: 38px;
+      color: #4a0710;
+      background: #f5c22e;
+      padding: 10px 26px 6px;
+      border-radius: 40px;
+    }
+    #end-cta {
+      position: absolute;
+      left: 110px;
+      top: 1258px;
+      width: 860px;
+      height: 76px;
+      background: #ffffff;
+      border-radius: 38px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 0 22px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    }
+    #end-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #f5c22e;
+      flex: none;
+    }
+    #end-typed {
+      flex: 1;
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      font-size: 36px;
+      color: #4a0710;
+      white-space: nowrap;
+    }
+    #end-typed .ch { opacity: 0; }
+    #end-heart { width: 40px; height: 40px; flex: none; }
+    #end-stamp {
+      position: absolute;
+      left: 30px;
+      top: 565px;
+      z-index: 5;
+      font-family: "Poppins", sans-serif;
+      font-weight: 800;
+      font-size: 46px;
+      color: #ffffff;
+      background: #d21f26;
+      border: 5px solid #ffffff;
+      padding: 12px 24px 8px;
+      border-radius: 14px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+    }
+  </style>
+  <div id="root" data-composition-id="endcard" data-width="1080" data-height="1920">
+    <div id="end-logos"><img src="assets/logos.png" alt="Negeri Sembilan, Parlimen Belia Malaysia, PRISMA" /></div>
+    <div id="end-title">JOM DAFTAR!</div>
+    <div id="end-sub">sebagai pengundi melalui ePBMY</div>
+    <div id="end-poster" class="print"><img src="assets/poster_daftar.jpg" alt="Poster panduan pendaftaran" /></div>
+    <div id="end-ig" class="print"><img src="assets/ig_profile.jpg" alt="Profil Instagram prisma.n9" /></div>
+    <div id="end-stamp">TUTUP HARI INI!</div>
+    <div id="end-guide"><span>Panduan 10 langkah → @prisma.n9</span></div>
+    <div id="end-cta">
+      <div id="end-avatar"></div>
+      <div id="end-typed"><span class="ch">#</span><span class="ch">B</span><span class="ch">e</span><span class="ch">l</span><span class="ch">i</span><span class="ch">a</span><span class="ch">u</span><span class="ch">n</span><span class="ch">d</span><span class="ch">i</span><span class="ch">P</span><span class="ch">R</span><span class="ch">I</span><span class="ch">S</span><span class="ch">M</span><span class="ch">A</span></div>
+      <svg id="end-heart" viewBox="0 0 24 24"><path fill="#d21f26" d="M12 21s-7.5-4.6-10-9.3C.4 8.4 2.3 4.5 6 4.5c2.1 0 3.4 1.2 4 2.3.6-1.1 1.9-2.3 4-2.3 3.7 0 5.6 3.9 4 7.2C19.5 16.4 12 21 12 21z"/></svg>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#end-title", { scale: 1.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "expo.out" }, 0.1);
+    tl.fromTo("#end-sub", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.35, ease: "expo.out" }, 0.4);
+    // The guide poster and the profile land as prints, the way they look on the page.
+    tl.fromTo("#end-poster", { y: 260, rotation: -10, opacity: 0 }, { y: 0, rotation: -4, opacity: 1, duration: 0.45, ease: "expo.out" }, 0.7);
+    tl.fromTo("#end-ig", { y: 260, rotation: 10, opacity: 0 }, { y: 0, rotation: 4, opacity: 1, duration: 0.45, ease: "expo.out" }, 0.9);
+    // The deadline is stamped on, once.
+    tl.fromTo("#end-stamp", { scale: 1.8, rotation: -14, opacity: 0 }, { scale: 1, rotation: -8, opacity: 1, duration: 0.3, ease: "back.out(1.6)" }, 1.25);
+    tl.fromTo("#end-guide span", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.25, ease: "back.out(2)" }, 1.5);
+    tl.fromTo("#end-cta", { y: 140, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "expo.out" }, 1.9);
+    document.querySelectorAll("#end-typed .ch").forEach((c, i) => tl.set(c, { opacity: 1 }, 2.3 + i * 0.07));
+    tl.fromTo("#end-heart", { scale: 1 }, { scale: 1.35, duration: 0.14, ease: "power2.out", yoyo: true, repeat: 1 }, 3.6);
+    tl.set({}, {}, 8.2);
+    window.__timelines["endcard"] = tl;
+  </script>
+</template>

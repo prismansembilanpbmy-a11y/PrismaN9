@@ -1,0 +1,116 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #hook-top {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    #hook-logos {
+      width: 600px;
+      height: 112px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    #hook-logos img {
+      width: 600px;
+      height: 112px;
+      object-fit: cover;
+      display: block;
+    }
+    #hook-big {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 150px;
+      line-height: 1;
+      color: #7a0f1e;
+    }
+    #hook-line {
+      font-family: "Poppins", sans-serif;
+      font-weight: 800;
+      font-size: 54px;
+      color: #ffffff;
+      background: #d21f26;
+      padding: 10px 28px 6px;
+      border-radius: 12px;
+    }
+    /* Proof: the meeting photos as tilted prints at the frame edges */
+    #root .print {
+      position: absolute;
+      width: 300px;
+      height: 225px;
+      background: #ffffff;
+      padding: 8px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    }
+    #root .print img {
+      width: 284px;
+      height: 209px;
+      object-fit: cover;
+      display: block;
+    }
+    #hook-name {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    #hook-name-1 {
+      font-family: "Poppins", sans-serif;
+      font-weight: 800;
+      font-size: 44px;
+      color: #ffffff;
+      background: #7a0f1e;
+      padding: 10px 26px 6px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+    #hook-name-2 {
+      font-family: "Poppins", sans-serif;
+      font-weight: 800;
+      font-size: 40px;
+      color: #4a0710;
+      background: #f5c22e;
+      padding: 8px 24px 4px;
+      border-radius: 12px;
+    }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hook-p1" class="print" style="left: 24px; top: 700px"><img src="assets/jumpa1.jpg" alt="" /></div>
+    <div id="hook-p2" class="print" style="left: 756px; top: 680px"><img src="assets/jumpa2.jpg" style="object-position: 55% 60%" alt="" /></div>
+    <div id="hook-top" data-layout-allow-overlap>
+      <div id="hook-logos"><img src="assets/logos.png" alt="Negeri Sembilan, Parlimen Belia Malaysia, PRISMA" /></div>
+      <div id="hook-big">Gen Z,</div>
+      <div id="hook-line">HARI INI hari terakhir daftar!</div>
+    </div>
+    <div id="hook-name">
+      <div id="hook-name-1">YB Dato’ Dr Mohamad Rafie Bin Ab Malek</div>
+      <div id="hook-name-2">ADUN Ampangan</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Frame 0 already reads: logos, the question to Gen Z and one print. The rest lands in the first second.
+    tl.set("#hook-p1", { rotation: -7 }, 0);
+    tl.fromTo("#hook-p2", { scale: 0.5, rotation: 12, opacity: 0 }, { scale: 1, rotation: 6, opacity: 1, duration: 0.3, ease: "back.out(2)" }, 0.4);
+    tl.fromTo("#hook-name-1", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.3, ease: "expo.out" }, 0.8);
+    tl.fromTo("#hook-name-2", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.3, ease: "expo.out" }, 0.95);
+    tl.set({}, {}, 5.7);
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

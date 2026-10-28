@@ -1,0 +1,113 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    /* Cards live on the empty wall above the speaker's head (y 220-570) */
+    #root .card {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    #root .plate {
+      font-family: "Poppins", sans-serif;
+      font-weight: 800;
+      line-height: 1;
+      padding: 14px 28px 8px;
+      border-radius: 14px;
+      white-space: nowrap;
+    }
+    #root .maroon { background: #7a0f1e; color: #ffffff; }
+    #root .maroon-g { background: #7a0f1e; color: #f5c22e; }
+    #root .gold { background: #f5c22e; color: #4a0710; }
+    #root .urgent { background: #d21f26; color: #ffffff; }
+    #root .row { display: flex; gap: 12px; align-items: flex-end; }
+    #root .serif {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-weight: 700;
+      color: #7a0f1e;
+      line-height: 1;
+      text-shadow: 0 4px 16px rgba(255, 255, 255, 0.6);
+    }
+  </style>
+  <div id="root" data-composition-id="cards" data-width="1080" data-height="1920">
+    <div id="c-age" class="card clip" data-start="20.6" data-duration="4.3" data-track-index="0">
+      <div class="plate maroon" style="font-size: 44px">Gen Z berumur</div>
+      <div class="row">
+        <div id="c-age-n" class="plate gold" style="font-size: 190px">18–30</div>
+        <div class="plate maroon" style="font-size: 64px">TAHUN</div>
+      </div>
+    </div>
+
+    <div id="c-daftar" class="card clip" data-start="26" data-duration="7.6" data-track-index="0">
+      <div class="plate maroon" style="font-size: 46px">Daftarkan diri sebagai</div>
+      <div class="plate gold" style="font-size: 120px">PENGUNDI</div>
+      <div class="plate maroon-g" style="font-size: 46px">Parlimen Belia Malaysia</div>
+      <div class="plate urgent" style="font-size: 40px">Pendaftaran tutup HARI INI</div>
+    </div>
+
+    <div id="c-tarikh" class="card clip" data-start="35.65" data-duration="4.8" data-track-index="0">
+      <div class="plate maroon" style="font-size: 46px">HARI MENGUNDI</div>
+      <div class="plate gold" style="font-size: 110px" data-var-text="tarikh">1 NOVEMBER 2026</div>
+    </div>
+
+    <div id="c-epbmy" class="card clip" data-start="41.3" data-duration="3.6" data-track-index="0">
+      <div class="plate maroon" style="font-size: 46px">Daftar melalui</div>
+      <div class="row" style="gap: 10px">
+        <div id="c-e1" class="plate gold" style="font-size: 150px">e</div>
+        <div id="c-e2" class="plate gold" style="font-size: 150px">P</div>
+        <div id="c-e3" class="plate gold" style="font-size: 150px">B</div>
+        <div id="c-e4" class="plate gold" style="font-size: 150px">MY</div>
+      </div>
+    </div>
+
+    <div id="c-bw1" class="card clip" data-start="48.3" data-duration="2.3" data-track-index="0">
+      <div class="serif" style="font-size: 130px">berpartisipasi</div>
+    </div>
+    <div id="c-bw2" class="card clip" data-start="51.2" data-duration="1.5" data-track-index="0">
+      <div class="serif" style="font-size: 140px">berperanan</div>
+    </div>
+    <div id="c-bw3" class="card clip" data-start="52.75" data-duration="2.2" data-track-index="0">
+      <div class="serif" style="font-size: 150px">melatih</div>
+    </div>
+    <div id="c-bw4" class="card clip" data-start="58.2" data-duration="2.5" data-track-index="0">
+      <div class="serif" style="font-size: 130px">satu permulaan</div>
+    </div>
+
+    <div id="c-selamat" class="card clip" data-start="63.3" data-duration="4.45" data-track-index="0">
+      <div class="plate maroon" style="font-size: 58px">Selamat mengundi,</div>
+      <div id="c-genz" class="plate gold" style="font-size: 170px">Gen Z!</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Plates wipe in from the left and off to the right.
+    [["#c-age", 20.6, 4.3], ["#c-daftar", 26, 7.6], ["#c-tarikh", 35.65, 4.8], ["#c-selamat", 63.3, 4.45]].forEach(([id, t, d]) => {
+      const plates = document.querySelectorAll(id + " .plate");
+      tl.fromTo(plates, { clipPath: "inset(0% 100% 0% 0%)" },
+        { clipPath: "inset(0% 0% 0% 0%)", duration: 0.27, ease: "expo.out", stagger: 0.1 }, t);
+      tl.to(plates, { clipPath: "inset(0% 0% 0% 100%)", duration: 0.2, ease: "power2.in", stagger: 0.04 },
+        t + d - 0.3 - 0.04 * (plates.length - 1));
+    });
+    // Numbers land with weight.
+    tl.fromTo("#c-age-n", { scale: 1.3 }, { scale: 1, duration: 0.3, ease: "back.out(2)" }, 20.75);
+    tl.fromTo("#c-genz", { scale: 1.3 }, { scale: 1, duration: 0.3, ease: "back.out(2)" }, 63.45);
+    // ePBMY is spelled out as he says each letter.
+    tl.fromTo("#c-epbmy .plate.maroon", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.27, ease: "expo.out" }, 41.3);
+    [["#c-e1", 41.3], ["#c-e2", 42.3], ["#c-e3", 43.1], ["#c-e4", 43.55]].forEach(([el, t]) =>
+      tl.fromTo(el, { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.22, ease: "back.out(2.4)" }, t));
+    // Big serif words pop and hold still.
+    [["#c-bw1", 48.3], ["#c-bw2", 51.2], ["#c-bw3", 52.75], ["#c-bw4", 58.2]].forEach(([id, t]) =>
+      tl.fromTo(id + " .serif", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.25, ease: "back.out(2)" }, t));
+    tl.set({}, {}, 67.8);
+    window.__timelines["cards"] = tl;
+  </script>
+</template>

@@ -13,7 +13,7 @@ Claude akan semak ejaan nama dengan anda, beri video pratonton, dan render bila 
 ## Isi repo
 | Folder | Isi |
 |---|---|
-| `.claude/skills/prisma-reels-style/` | Panduan gaya (SKILL.md), templat video v3 dan kesan bunyi |
+| `.claude/skills/prisma-reels-style/` | Panduan gaya (SKILL.md), templat video calon (v3), templat video ucapan/kempen, dan kesan bunyi |
 | `.claude/skills/prisma-reels-style/tools/` | Alat potong jeda senyap, buat sari kata dan jana muzik AI |
 | `scripts/setup.sh` | Pasang semua alat dalam sesi baru |
 
